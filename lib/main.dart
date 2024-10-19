@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../i/lib/screens/Home_screen.dart';
+import 'package:minesweeper/screens/Home_screen.dart';
 
 void main() {
   runApp(const MyApp());
