@@ -21,7 +21,7 @@ class Titledata extends StatelessWidget {
     return Expanded(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.0),
-        padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 16.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
         decoration: BoxDecoration(
             color: color, borderRadius: borderRadius, border: border),
         child: Row(
@@ -32,7 +32,7 @@ class Titledata extends StatelessWidget {
               text,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 32,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold),
             )
           ],
