@@ -7,6 +7,7 @@ class MineSweeperGame {
   static int col = 6;
   static int cell = row * col;
   bool gameOver = false;
+  int flagCount = 5;
   List<Cell> gameMap = [];
   static List<List<dynamic>> map = List.generate(
       row, (x) => List.generate(col, (y) => Cell(x, y, "", false)));
@@ -86,6 +87,18 @@ class MineSweeperGame {
       }
     }
   }
+  void onDoubleClickedCell(Cell cell){
+    if (cell.reveal) {
+      return; //if the cell is revelead do nothing
+    }
+    if (cell.flaged) {
+      cell.flaged = false;
+      flagCount++; //increment flag if it is removed
+    } else if (flagCount > 0) {
+      cell.flaged = true;
+      flagCount--; //decrease if it is used
+    }
+  }
 }
 
 class Cell {
@@ -93,5 +106,6 @@ class Cell {
   int col;
   dynamic content;
   bool reveal = false;
+  bool flaged = false;
   Cell(this.col, this.row, this.content, this.reveal);
 }

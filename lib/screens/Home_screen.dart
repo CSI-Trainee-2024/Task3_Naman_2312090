@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 34.0,
                 ),
                 color: AppColor.lightPrimaryColor,
-                text: "10",
+                text: "${game.flagCount}",
                 border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -84,13 +84,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (BuildContext ctx, index) {
                   Color cellColor = game.gameMap[index].reveal
                       ? AppColor.clickedCard
-                      : AppColor.lightPrimaryColor;
+                      : (game.gameMap[index].flaged
+                          ? Colors.yellow
+                          : AppColor.lightPrimaryColor);
                   return GestureDetector(
                     onTap: game.gameOver
                         ? null
                         : () {
                             setState(() {
                               game.onClickedCell(game.gameMap[index]);
+                            });
+                          },
+                    onDoubleTap: game.gameOver
+                        ? null
+                        : () {
+                            setState(() {
+                              /*game.gameMap[index].reveal
+                                  ? "${game.gameMap[index].content}"
+                                  : (game.gameMap[index].flaged ? "🚩" : "");
+
+                              if (!game.gameMap[index].reveal) {
+                                // Only flag if the cell is not revealed
+                                game.gameMap[index].flaged =
+                                    !game.gameMap[index].flaged;
+                                game.flagCount += game.gameMap[index].flaged
+                                    ? -1
+                                    : 1;
+                              }*/
+
+                              game.onDoubleClickedCell(game.gameMap[index]);
                             });
                           },
                     child: Container(
@@ -102,6 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           game.gameMap[index].reveal
                               ? "${game.gameMap[index].content}"
                               : "",
+                          /* : (game.gameMap[index].flaged
+                                   ? "🚩"
+                                   : ""), */      //Icon(Icons.flag).toString()
                           style: TextStyle(
                               color: game.gameMap[index].reveal
                                   ? game.gameMap[index].content == "X"
@@ -131,9 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {
                 game.resetGame();
                 print("Game map length: ${game.gameMap.length}");
-               // game.gameOver = true;
+                game.flagCount = 5;
+                // game.gameOver = true;
               });
-            
             },
             fillColor: AppColor.lightPrimaryColor,
             child: Row(
