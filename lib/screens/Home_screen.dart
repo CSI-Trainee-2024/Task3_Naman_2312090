@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:minesweeper/theme/colors.dart';
 import 'package:minesweeper/theme/titleData.dart';
@@ -133,15 +135,29 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
             fillColor: AppColor.lightPrimaryColor,
-            child: Text(
-              "Repeat",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.restart_alt,
+                  size: 40,
+                  color: AppColor.accentColor,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Reset",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(horizontal: 64.0, vertical: 18.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 18.0),
           ),
           SizedBox(
             height: 10.0,

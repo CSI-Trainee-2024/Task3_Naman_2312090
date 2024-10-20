@@ -3,8 +3,8 @@ import 'dart:math';
 
 class MineSweeperGame {
   //game variables
-  static int row = 8;
-  static int col = 8;
+  static int row = 6;
+  static int col = 6;
   static int cell = row * col;
   bool gameOver = false;
   List<Cell> gameMap = [];
@@ -13,7 +13,7 @@ class MineSweeperGame {
 
 //function to generate a Map
   void generateMap() {
-    placeMines(20);
+    placeMines(10);
     for (int i = 0; i < row; i++) {
       for (int j = 0; j < col; j++) {
         gameMap.add(map[i][j]);
@@ -40,8 +40,8 @@ class MineSweeperGame {
 
 //function to show all hidden mines when loose
   void showMines() {
-    for (int i = 0; i <= row; i++) {
-      for (int j = 0; j <= col; j++) {
+    for (int i = 0; i < row; i++) {
+      for (int j = 0; j < col; j++) {
         if (map[i][j].content == "X") {
           map[i][j].reveal = true;
         }
@@ -61,8 +61,8 @@ class MineSweeperGame {
       int cellRow = cell.row;
       int cellCol = cell.col;
 
-      for (int i = max(cellRow - 1, 0); i <= min(cellRow + 1, row - 1); i++) {
-        for (int j = max(cellCol - 1, 0); j <= min(cellCol + 1, row - 1); j++) {
+      for (int i = max(cellRow - 1, 0); i < min(cellRow + 1, row - 1); i++) {
+        for (int j = max(cellCol - 1, 0); j < min(cellCol + 1, row - 1); j++) {
           if (map[i][j].content == "X") {
             mineCount++;
           }
@@ -73,7 +73,7 @@ class MineSweeperGame {
       cell.reveal = true;
       if (mineCount == 0) {
         //reveal all the adjacent cell until we get a number
-        for (int i = max(cellRow - 1, 0); i < -min(cellRow + 1, row - 1); i++) {
+        for (int i = max(cellRow - 1, 0); i < min(cellRow + 1, row - 1); i++) {
           for (int j = max(cellCol - 1, 0);
               j <= min(cellCol + 1, row - 1);
               j++) {
