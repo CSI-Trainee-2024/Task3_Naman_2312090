@@ -26,6 +26,7 @@ class MineSweeperGame {
         row, (x) => List.generate(col, (y) => Cell(x, y, "", false)));
     gameMap.clear();
     generateMap();
+    gameOver = false;
   }
 
 //function to place mines randomly

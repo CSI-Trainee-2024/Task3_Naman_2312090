@@ -131,8 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {
                 game.resetGame();
                 print("Game map length: ${game.gameMap.length}");
-                game.gameOver = true;
+               // game.gameOver = true;
               });
+            
             },
             fillColor: AppColor.lightPrimaryColor,
             child: Row(
@@ -157,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 18.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
           ),
           SizedBox(
             height: 10.0,
