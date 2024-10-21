@@ -177,6 +177,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 game.flagCount = 5;
 
                 timer?.cancel();
+                elapsedTime = 0;
+                startTimer();
               // game.gameOver = true;
               });
             },
