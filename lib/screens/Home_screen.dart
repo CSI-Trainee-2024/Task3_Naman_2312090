@@ -42,25 +42,31 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
+      //drawer: ListView(),
+      //drawerScrimColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 150,
         backgroundColor: AppColor.primaryColor,
         centerTitle: true,
-        title: Text(
-          "MineSweeper",
-          style: TextStyle(color: Colors.white),
+        title: Image.asset(
+          "assets/text.png",
+          height: 150,
         ),
-        actions: [
+        /*actions: [
           IconButton(
               onPressed: () {},
               icon: Icon(
                 Icons.settings,
                 color: Colors.white,
-              ))
-        ],
+              )),
+        ],*/
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          SizedBox(
+            height: 30,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -90,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             width: double.infinity,
-            height: 500.0,
+            height: 425.0,
             padding: EdgeInsets.all(20.0),
             //color: AppColor.lightPrimaryColor,
             child: GridView.builder(
@@ -117,18 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? null
                         : () {
                             setState(() {
-                              /*game.gameMap[index].reveal
-                                  ? "${game.gameMap[index].content}"
-                                  : (game.gameMap[index].flaged ? "🚩" : "");
-
-                              if (!game.gameMap[index].reveal) {
-                                // Only flag if the cell is not revealed
-                                game.gameMap[index].flaged =
-                                    !game.gameMap[index].flaged;
-                                game.flagCount += game.gameMap[index].flaged
-                                    ? -1
-                                    : 1;
-                              }*/
 
                               game.onDoubleClickedCell(game.gameMap[index]);
                             });
@@ -142,9 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           game.gameMap[index].reveal
                               ? "${game.gameMap[index].content}"
                               : "",
-                          /* : (game.gameMap[index].flaged
-                                   ? "🚩"
-                                   : ""), */ //Icon(Icons.flag).toString()
                           style: TextStyle(
                               color: game.gameMap[index].reveal
                                   ? game.gameMap[index].content == "X"
@@ -179,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 timer?.cancel();
                 elapsedTime = 0;
                 startTimer();
-              // game.gameOver = true;
+                // game.gameOver = true;
               });
             },
             fillColor: AppColor.lightPrimaryColor,

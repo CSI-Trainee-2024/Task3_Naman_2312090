@@ -59,8 +59,6 @@ class MineSweeperGame {
     if (cell.content == "X") {
       showMines();
       gameOver = true;
-      //to stop the timer
-     // (cell.row as _HomeScreenState).timer?.cancel(); 
     } else {
       //calculate the scoring steps
       int mineCount = 0;
