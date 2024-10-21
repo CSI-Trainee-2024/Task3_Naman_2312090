@@ -176,9 +176,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 print("Game map length: ${game.gameMap.length}");
                 game.flagCount = 5;
 
-
                 timer?.cancel();
-               // game.gameOver = true;
+              // game.gameOver = true;
               });
             },
             fillColor: AppColor.lightPrimaryColor,
