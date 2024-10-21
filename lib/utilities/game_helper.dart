@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:minesweeper/screens/Home_screen.dart';
+
 class MineSweeperGame {
   //game variables
   static int row = 6;
@@ -57,6 +59,8 @@ class MineSweeperGame {
     if (cell.content == "X") {
       showMines();
       gameOver = true;
+      //to stop the timer
+     // (cell.row as _HomeScreenState).timer?.cancel(); 
     } else {
       //calculate the scoring steps
       int mineCount = 0;
@@ -87,7 +91,8 @@ class MineSweeperGame {
       }
     }
   }
-  void onDoubleClickedCell(Cell cell){
+
+  void onDoubleClickedCell(Cell cell) {
     if (cell.reveal) {
       return; //if the cell is revelead do nothing
     }

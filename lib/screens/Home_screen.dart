@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, library_private_types_in_public_api
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:minesweeper/theme/colors.dart';
 import 'package:minesweeper/theme/titleData.dart';
@@ -13,11 +15,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   MineSweeperGame game = MineSweeperGame();
+  Timer? timer;
+  int elapsedTime = 0;
 
   @override
   void initState() {
     super.initState();
     game.generateMap();
+    startTimer();
+  }
+
+  //to set the timer
+  void startTimer() {
+    game.gameOver = false;
+    elapsedTime = 0;
+    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+      if (!game.gameOver) {
+        setState(() {
+          elapsedTime++;
+        });
+      }
+    });
   }
 
   @override
@@ -64,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 34.0,
                 ),
                 color: AppColor.lightPrimaryColor,
-                text: "10:34",
+                text: "${elapsedTime}",
                 border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -126,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               : "",
                           /* : (game.gameMap[index].flaged
                                    ? "🚩"
-                                   : ""), */      //Icon(Icons.flag).toString()
+                                   : ""), */ //Icon(Icons.flag).toString()
                           style: TextStyle(
                               color: game.gameMap[index].reveal
                                   ? game.gameMap[index].content == "X"
@@ -157,7 +175,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 game.resetGame();
                 print("Game map length: ${game.gameMap.length}");
                 game.flagCount = 5;
-                // game.gameOver = true;
+
+
+                timer?.cancel();
+               // game.gameOver = true;
               });
             },
             fillColor: AppColor.lightPrimaryColor,
